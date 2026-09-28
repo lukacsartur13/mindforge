@@ -12,7 +12,7 @@ import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE } from '../config';
+import { SITE, IS_PREVIEW, abs } from '../config';
 
 interface Crumb {
   name: string;
@@ -50,16 +50,16 @@ const {
   modifiedTime,
 } = Astro.props;
 
-const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', SITE.url).href;
+const canonical = abs(Astro.url.pathname);
 
 let ogImage: string;
 let ogWidth = 1200;
 let ogHeight = 630;
 if (typeof image === 'string') {
-  ogImage = new URL(image, SITE.url).href;
+  ogImage = abs(image);
 } else {
   const og = await getImage({ src: image, width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 80 });
-  ogImage = new URL(og.src, SITE.url).href;
+  ogImage = abs(og.src);
 }
 
 const personId = `${SITE.url}/rolam#seregely-edit`;
@@ -121,7 +121,7 @@ const siteLd = [
     '@id': personId,
     name: SITE.owner,
     jobTitle: SITE.role,
-    url: `${SITE.url}/rolam`,
+    url: abs('/rolam'),
     image: new URL('/assets/img/seregely-edit.jpg', SITE.url).href,
     worksFor: { '@id': businessId },
     memberOf: { '@type': 'Organization', name: 'International Coaching Federation (ICF)' },
@@ -141,7 +141,7 @@ const breadcrumbLd = breadcrumbs && {
     '@type': 'ListItem',
     position: i + 1,
     name: c.name,
-    item: new URL(c.href, SITE.url).href,
+    item: abs(c.href),
   })),
 };
 
@@ -155,7 +155,7 @@ const extraLd = [breadcrumbLd, ...(Array.isArray(jsonLd) ? jsonLd : jsonLd ? [js
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
+    <meta name="robots" content={noindex || IS_PREVIEW ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
     <meta name="author" content={SITE.owner} />
     <meta name="theme-color" content="#000000" />
     <meta name="format-detection" content="telephone=no" />

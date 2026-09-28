@@ -1,12 +1,12 @@
 ---
-import { NAV, SITE } from '../config';
+import { NAV, SITE, stripBase } from '../config';
 import SocialIcons from './SocialIcons.astro';
 
 interface Props {
   variant: 'overlay' | 'solid';
 }
 const { variant } = Astro.props;
-const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const path = stripBase(Astro.url.pathname).replace(/\/$/, '') || '/';
 const isActive = (href: string) =>
   href === '/' ? path === '/' : !href.includes('#') && path.startsWith(href);
 ---

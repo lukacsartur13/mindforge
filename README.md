@@ -2,6 +2,8 @@
 
 A www.mindforge.hu Wix-oldal kódolt másolata. Statikus HTML-t generál: gyors, SEO-barát, bármilyen tárhelyre feltölthető.
 
+**Élő előnézet (GitHub Pages):** https://lukacsartur13.github.io/mindforge/ – minden `main`-re pusholáskor automatikusan frissül (`.github/workflows/deploy.yml`).
+
 ## Parancsok
 
 ```bash
@@ -23,9 +25,13 @@ npm run build    # éles build a dist/ mappába
 ## Élesítés előtt
 
 1. **Űrlap:** `src/config.ts` → `FORM_ENDPOINT` (pl. Formspree / Web3Forms URL). Üresen hagyva az e-mail kliens nyílik meg.
-2. **Impresszum / Adatkezelés:** a tárhelyszolgáltató adatait frissíteni kell (jelenleg Wix, illetve Mozello szerepel).
-3. **Átirányítások:** a régi Wix URL-ek (/rólam, /blank, /post/...) 301-gyel az újakra mutatnak – Vercelen a `vercel.json`, Apache/cPanel tárhelyen a `public/.htaccess` intézi.
-4. Google Search Console-ban beküldeni: `https://www.mindforge.hu/sitemap-index.xml`
+2. **Impresszum / Adatkezelés:** a tárhelyszolgáltató adatait frissíteni kell (GitHub Inc. – jelenleg Wix, illetve Mozello szerepel).
+3. **Saját domain (www.mindforge.hu) bekötése GitHub Pages-en:**
+   - `.github/workflows/deploy.yml` → `BASE_PATH: /`, `PUBLIC_PREVIEW: 'false'`, `CUSTOM_DOMAIN: www.mindforge.hu`
+   - DNS: `www` CNAME → `lukacsartur13.github.io`; a gyökérdomain A rekordjai: 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153
+   - GitHub → Settings → Pages → Custom domain + „Enforce HTTPS”
+4. **Átirányítások:** a régi Wix URL-ekhez (/rólam, /blank, /post/...) a build átirányító oldalakat generál (`scripts/postbuild.mjs`).
+5. Google Search Console-ban beküldeni: `https://www.mindforge.hu/sitemap-index.xml`
 
 ## SEO
 

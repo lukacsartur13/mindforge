@@ -22,3 +22,24 @@ export const NAV = [
   { label: 'Kapcsolat', href: '/#kapcsolat' },
   { label: 'Blog', href: '/blog' },
 ];
+
+/**
+ * Útvonal-előtag. Éles domainen (www.mindforge.hu) '/', GitHub Pages
+ * előnézeten '/mindforge/' – a build a BASE_PATH környezeti változóból veszi.
+ */
+export const BASE = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+/** Előnézeti build (pl. github.io): minden oldal noindex, hogy ne legyen duplikált tartalom. */
+export const IS_PREVIEW = import.meta.env.PUBLIC_PREVIEW === 'true';
+
+/** Az aktuális útvonal előtag nélkül, záró perjellel: '/rolam/' */
+export function stripBase(path: string): string {
+  let p = BASE !== '/' && path.startsWith(BASE) ? '/' + path.slice(BASE.length) : path;
+  if (!p.startsWith('/')) p = '/' + p;
+  return /\.[a-z0-9]+$/i.test(p) || p.endsWith('/') ? p : p + '/';
+}
+
+/** Abszolút URL az éles domainen (kanonikus link, strukturált adatok, megosztási kép). */
+export function abs(path: string): string {
+  return new URL(stripBase(path), SITE.url).href;
+}

@@ -1,8 +1,8 @@
 ---
-import { NAV, SITE } from '../config';
+import { NAV, SITE, stripBase } from '../config';
 import SocialIcons from './SocialIcons.astro';
 const year = new Date().getFullYear();
-const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const path = stripBase(Astro.url.pathname).replace(/\/$/, '') || '/';
 ---
 <footer class="site-footer">
   <video

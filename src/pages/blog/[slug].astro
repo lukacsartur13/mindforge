@@ -3,7 +3,7 @@ import { getCollection, render } from 'astro:content';
 import { getImage } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Img from '../../components/Img.astro';
-import { SITE } from '../../config';
+import { SITE, abs } from '../../config';
 
 export async function getStaticPaths() {
   const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
@@ -23,7 +23,7 @@ export async function getStaticPaths() {
 const { post, related } = Astro.props;
 const { Content } = await render(post);
 const fmt = new Intl.DateTimeFormat('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' });
-const url = new URL(`/blog/${post.id}`, SITE.url).href;
+const url = abs(`/blog/${post.id}`);
 const cover = await getImage({ src: post.data.cover, width: 1200, format: 'jpg' });
 
 const articleLd = {
@@ -31,7 +31,7 @@ const articleLd = {
   '@type': 'BlogPosting',
   headline: post.data.title,
   description: post.data.description,
-  image: new URL(cover.src, SITE.url).href,
+  image: abs(cover.src),
   datePublished: post.data.date.toISOString(),
   dateModified: (post.data.updated ?? post.data.date).toISOString(),
   author: { '@id': `${SITE.url}/rolam#seregely-edit` },
