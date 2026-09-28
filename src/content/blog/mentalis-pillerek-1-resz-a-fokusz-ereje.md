@@ -1,5 +1,5 @@
 ---
-title: Mentális pillérek 1 – A fókusz ereje
+title: 'Mentális pillérek #1 – A fókusz ereje'
 seoTitle: 'A fókusz ereje sportolóknak – Mentális pillérek #1'
 description: Mi történik, amikor beszűkül a világ, és csak a cél marad? A fókuszált állapot titka sportolóknak – Mentális pillérek sorozat 1. rész.
 date: 2026-07-20T12:12:00Z
