@@ -931,18 +931,11 @@ a.case:hover h3 {
 }
 
 .team {
-  position: relative;
-  height: 3328px;
-  background: var(--black);
-  color: var(--white);
-}
-.team__sticky {
-  position: sticky;
-  top: 0;
   display: grid;
   place-items: center;
-  height: 100vh;
-  padding: 80px var(--gutter);
+  padding: 130px var(--gutter);
+  background: var(--black);
+  color: var(--white);
 }
 .team__text {
   max-width: 600px;
@@ -960,15 +953,6 @@ a.case:hover h3 {
   min-height: 42px;
   margin-top: 27px;
 }
-.team__story {
-  position: absolute;
-  z-index: 2;
-  height: auto;
-  border-radius: 18px;
-}
-.team__story--1 { top: 1495px; left: 37.6%; width: 24.8%; }
-.team__story--2 { top: 2033px; left: 8.2%; width: 20.3%; }
-.team__story--3 { top: 2532px; left: 73.3%; width: 18.5%; }
 
 .faq {
   display: grid;
@@ -1443,21 +1427,7 @@ a.case:hover h3 {
   .session { grid-template-columns: 1fr; }
   .session__img { height: 480px; }
 
-  .team { height: auto; }
-  .team__sticky { position: static; height: auto; padding: 90px var(--gutter) 40px; }
-  .team__stories {
-    display: flex;
-    gap: 16px;
-    padding: 0 var(--gutter) 90px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-  }
-  .team__story {
-    position: static;
-    flex: 0 0 62%;
-    width: auto !important;
-    scroll-snap-align: center;
-  }
+  .team { padding: 90px var(--gutter); }
 
   .faq { grid-template-columns: 1fr; gap: 30px; padding: 40px var(--gutter) 80px; }
   .faq__intro { position: static; }

@@ -4,9 +4,6 @@ import Img from '../components/Img.astro';
 import labda from '../assets/img/rolam-hero-labda.jpg';
 import edit from '../assets/img/seregely-edit.jpg';
 import rendelo from '../assets/img/rendelo.jpg';
-import story1 from '../assets/img/story-1.png';
-import story2 from '../assets/img/story-2.png';
-import story3 from '../assets/img/story-3.png';
 
 const faqs = [
   {
@@ -127,8 +124,7 @@ const faqLd = {
 
   <!-- CSOPORTOS FOGLALKOZÁS + STORY KÉPEK -->
   <section class="team" aria-labelledby="team-title">
-    <div class="team__sticky">
-      <div class="team__text">
+    <div class="team__text">
         <h2 id="team-title">Hogyan zajlik egy csoportos sport mentáltréning vagy team coaching foglalkozás?</h2>
         <p>Sportcsapatok esetében egy-egy foglalkozás általában 60–90 perc, a sportolók életkorától, a létszámtól és a feldolgozott témától függően.</p>
         <p>Edzői csapatokkal jellemzően 90–120 perces alkalmakban dolgozom.</p>
@@ -139,12 +135,6 @@ const faqLd = {
         <p>A résztvevők személyes megosztásai nem kerülnek tovább. Az edzővel (ha nem vesz részt) vagy szakmai vezetővel a folyamatot, a tapasztalatokat és a fejlesztési irányokat egyeztetjük – nem azt, hogy egy-egy sportoló mit mondott a foglalkozáson.</p>
         <p>Nincs két egyforma csapat, ezért nincs két egyforma foglalkozás sem. A közös munka során arra reagálok, ami az adott csapatban éppen jelen van, és arra, amire a fejlődéshez akkor a leginkább szükségük van.</p>
         <a class="btn btn--white" href="/#kapcsolat">Beszéljünk!</a>
-      </div>
-    </div>
-    <div class="team__stories">
-      <Img class="team__story team__story--1" src={story1} alt="Instagram story: A mai „dolgozószobám”" sizes="(max-width: 900px) 62vw, 25vw" widths={[360, 760]} />
-      <Img class="team__story team__story--2" src={story3} alt="Instagram story: útjelző tábla" sizes="(max-width: 900px) 62vw, 21vw" widths={[300, 760]} />
-      <Img class="team__story team__story--3" src={story2} alt="Instagram story: téglaépület" sizes="(max-width: 900px) 62vw, 19vw" widths={[280, 760]} />
     </div>
   </section>
 
