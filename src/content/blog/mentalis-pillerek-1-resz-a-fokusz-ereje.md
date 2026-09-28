@@ -1,10 +1,13 @@
 ---
-title: "Mentális pillérek 1. rész – A fókusz ereje"
-description: "Mi történik, amikor beszűkül a világ, és csak a cél marad? A fókuszált állapot titka sportolóknak – Mentális pillérek sorozat 1. rész."
-seoTitle: "A fókusz ereje sportolóknak – Mentális pillérek #1"
+title: Mentális pillérek 1 – A fókusz ereje
+seoTitle: 'A fókusz ereje sportolóknak – Mentális pillérek #1'
+description: Mi történik, amikor beszűkül a világ, és csak a cél marad? A fókuszált állapot titka sportolóknak – Mentális pillérek sorozat 1. rész.
 date: 2026-07-20T12:12:00Z
+updated: ''
 cover: images/blog-pillerek-1.jpg
+coverAlt: ''
 category: mentalis-pillerek
+readingTime: null
 ---
 
 Amikor minden összeáll – a fókuszált állapot titka.
