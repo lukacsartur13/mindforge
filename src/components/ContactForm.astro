@@ -1,0 +1,41 @@
+---
+import { FORM_ENDPOINT, SITE } from '../config';
+import Img from './Img.astro';
+import valto from '../assets/img/konzultacio-valto.jpg';
+---
+<section class="contact section-cream" data-header-theme="light" id="kapcsolat" aria-labelledby="kapcsolat-cim">
+  <Img class="contact__img" src={valto} alt="Váltófutók adják át egymásnak a stafétabotot" sizes="(max-width: 900px) 100vw, 50vw" widths={[480, 800, 1200]} />
+  <div class="contact__form-wrap">
+    <h2 id="kapcsolat-cim">Ingyenes konzultáció</h2>
+    <form class="form" data-contact-form data-endpoint={FORM_ENDPOINT} data-recipient={SITE.email}>
+      <div class="form__field">
+        <label for="f-vezeteknev">Vezetéknév *</label>
+        <input id="f-vezeteknev" name="vezeteknev" type="text" autocomplete="family-name" required />
+      </div>
+      <div class="form__field">
+        <label for="f-keresztnev">Keresztnév *</label>
+        <input id="f-keresztnev" name="keresztnev" type="text" autocomplete="given-name" required />
+      </div>
+      <div class="form__field form__field--full">
+        <label for="f-email">Email *</label>
+        <input id="f-email" name="email" type="email" autocomplete="email" required />
+      </div>
+      <div class="form__field form__field--full">
+        <label for="f-telefon">Telefonszám</label>
+        <input id="f-telefon" name="telefon" type="tel" autocomplete="tel" placeholder="+36" />
+      </div>
+      <div class="form__field form__field--full">
+        <label for="f-uzenet">Üzenet</label>
+        <textarea id="f-uzenet" name="uzenet" rows="3"></textarea>
+      </div>
+      <div class="form__field form__field--full">
+        <label for="f-idopont">Lehetséges időpont a konzultációra</label>
+        <input id="f-idopont" name="idopont" type="date" />
+      </div>
+      <input class="form__hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <input type="hidden" name="_subject" value="Ingyenes konzultáció – mindforge.hu" />
+      <button class="btn btn--black" type="submit">Küldés</button>
+      <p class="form__status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>

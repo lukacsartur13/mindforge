@@ -1,0 +1,39 @@
+---
+import { NAV, SITE } from '../config';
+import SocialIcons from './SocialIcons.astro';
+
+interface Props {
+  variant: 'overlay' | 'solid';
+}
+const { variant } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href: string) =>
+  href === '/' ? path === '/' : !href.includes('#') && path.startsWith(href);
+---
+<header class:list={['site-header', `site-header--${variant}`]}>
+  <a class="site-header__logo" href="/" aria-label="Mindforge – főoldal">
+    <img src="/assets/img/logo.png" alt="mindforge" width="700" height="210" />
+  </a>
+  <button class="site-header__menu-btn" type="button" aria-expanded="false" aria-controls="site-menu">
+    Menu
+  </button>
+</header>
+
+<div class="site-menu" id="site-menu" aria-hidden="true">
+  <div class="site-menu__backdrop" data-menu-close></div>
+  <nav class="site-menu__panel" aria-label="Főmenü">
+    <button class="site-menu__close" type="button" aria-label="Menü bezárása" data-menu-close>
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.4" fill="none" /></svg>
+    </button>
+    <ul class="site-menu__list">
+      {NAV.map((item) => (
+        <li>
+          <a href={item.href} class:list={{ 'is-active': isActive(item.href) }} data-menu-link>
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <SocialIcons class="site-menu__social" />
+  </nav>
+</div>

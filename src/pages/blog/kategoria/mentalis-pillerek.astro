@@ -1,0 +1,16 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PostList from '../../../components/PostList.astro';
+
+const posts = (await getCollection('blog', (p) => p.data.category === 'mentalis-pillerek')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+<BaseLayout
+  title="Mentális Pillérek – blogsorozat | MINDFORGE"
+  description="A Mentális pillérek sorozat: a fókusz ereje, a belső hang, a hibázás, a szemléletváltás és a rutin biztonsága a sportban."
+  breadcrumbs={[{ name: 'Blog', href: '/blog' }, { name: 'Mentális Pillérek', href: '/blog/kategoria/mentalis-pillerek' }]}
+>
+  <PostList posts={posts} heading="Mentális pillérek – blogsorozat sportolóknak" intro="A mentális stabilitás öt pillére a sportban: a fókusz ereje, a belső hang, a hibázás, a szemléletváltás és a rutin biztonsága." active="mentalis-pillerek" />
+</BaseLayout>

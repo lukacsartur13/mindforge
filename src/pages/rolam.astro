@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Img from '../components/Img.astro';
+import labda from '../assets/img/rolam-hero-labda.jpg';
+import edit from '../assets/img/seregely-edit.jpg';
+import rendelo from '../assets/img/rendelo.jpg';
+import story1 from '../assets/img/story-1.png';
+import story2 from '../assets/img/story-2.png';
+import story3 from '../assets/img/story-3.png';
+
+const faqs = [
+  {
+    q: 'Milyen problémákon segíthet egy mentáltréner?',
+    a: 'Segíthet többek között versenydrukk, önbizalomhiány, koncentrációs nehézségek, motivációvesztés, teljesítményszorongás, sérülés utáni visszatérés vagy célkitűzés esetén.',
+    bg: 'var(--yellow)',
+  },
+  {
+    q: 'Mennyi idő után várható eredmény?',
+    a: 'Ez egyénenként eltérő. Vannak, akik már néhány alkalom után pozitív változásokat tapasztalnak, de a tartós fejlődéshez rendszeres gyakorlás és hosszabb együttműködés szükséges.',
+    bg: 'var(--brown)',
+    fg: 'var(--white)',
+  },
+  {
+    q: 'Online is ugyanolyan hatékony a mentáltréning?',
+    a: 'Sok esetben igen. A legtöbb mentális készség – például a célkitűzés, a fókuszfejlesztés vagy a stresszkezelés – online konzultáció keretében is eredményesen fejleszthető.',
+    bg: 'var(--peach)',
+  },
+  {
+    q: 'Mit jelent a mentális felkészítés a gyakorlatban?',
+    a: 'Olyan technikák alkalmazását, mint a vizualizáció, légzőgyakorlatok, versenyrutinok kialakítása, pozitív önbeszéd fejlesztése, koncentrációs gyakorlatok és stresszkezelési módszerek.',
+    bg: 'var(--sky)',
+  },
+  {
+    q: 'Mi történik, ha úgy érzem, elvesztettem a motivációmat?',
+    a: 'A motiváció ingadozása természetes. A mentáltréning segít feltárni az okokat, új célokat meghatározni és olyan szokásokat kialakítani, amelyek hosszú távon is fenntartják a fejlődést.',
+    bg: 'var(--yellow)',
+  },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Seregély Edit – sport mentáltréner, sportcoach | MINDFORGE"
+  description="Seregély Edit sport mentáltréner, sportcoach és NLP Mester coach. Sportolókat, csapatokat, edzőket és sportszülőket támogatok Győrben, Budapesten és online."
+  header="overlay"
+  image={edit}
+  imageAlt="Seregély Edit sport mentáltréner"
+  breadcrumbs={[{ name: 'Rólam', href: '/rolam' }]}
+  jsonLd={faqLd}
+>
+  <!-- HERO -->
+  <section class="about-hero">
+    <div class="about-hero__left">
+      <Img src={labda} alt="Teniszlabda közelről, sötét háttér előtt" loading="eager" fetchpriority="high" sizes="(max-width: 900px) 100vw, 50vw" widths={[480, 800, 1200]} />
+      <div class="about-hero__title">
+        <h1>Seregély Edit</h1>
+        <p>sport mentáltréner, sportcoach,<br />NLP Mester coach</p>
+      </div>
+    </div>
+    <div class="about-hero__right">
+      <Img src={edit} alt="Seregély Edit sport mentáltréner kosárlabdával" loading="eager" sizes="(max-width: 900px) 80vw, 424px" widths={[424, 746]} />
+    </div>
+  </section>
+
+  <!-- KI VAGYOK ÉN -->
+  <section class="video-story" aria-labelledby="ki-vagyok">
+    <video autoplay muted loop playsinline preload="none" poster="/assets/img/rolam-video-poster.jpg" data-lazy-video aria-hidden="true">
+      <source data-src="/assets/video/rolam.mp4" type="video/mp4" />
+    </video>
+    <div class="video-story__inner reveal">
+      <h2 id="ki-vagyok">Ki vagyok én?</h2>
+      <p>Gyerekkorom óta a sport az életem része: tesi tagozatos általános iskolába jártam, táncoltam a Honvéd Táncegyüttesben, asztaliteniszeztem a Statisztikában, szertornáztam a középiskolai csapatban, 14 éves koromtól pedig motoroztam, és 19 évesen Magyarország első motorosrendőrnője lettem.</p>
+      <p>Akkor még nem tudtam, de ez az út hatalmas mentális erőt kívánt – amit ma már pontosan értek.</p>
+      <p>Azóta sok minden történt. Családot alapítottunk, felépítettük a saját vállalkozásunkat, és az évek során egyre világosabbá vált számomra, hogy az emberekkel való munka az, amiben igazán jól érzem magam.</p>
+      <p>Ma sport mentáltrénerként, sport coachként és NLP Mesterként sportolókat, csapatokat és edzőket támogatok abban, hogy a felkészülés során megszerzett tudásukat a legfontosabb pillanatokban is magabiztosan tudják megmutatni.</p>
+      <p>Öt gyermek édesanyjaként külön öröm számomra, hogy gyermekeim életének természetes része lett a sport. Nap mint nap látom, milyen sokat adhat egy támogató közeg, egy jó edző és egy olyan szemlélet, amely nemcsak az eredményt, hanem az embert is fejleszti.</p>
+      <p>Saját önismereti utamat a felmenőimnek köszönhetem. Miattuk jutottam el 10 évvel ezelőtt a győri Szenvedélybetegek Hozzátartozóinak Csoportjába, ahol évekig dolgoztam azon, hogy ne akarjak másokat megmenteni és inkább arra fókuszáljak, amire van ráhatásom. Ott tanultam meg, hogy a valódi változás mindig önmagunkkal kezdődik.</p>
+      <p>Ez a felismerés indított el egy olyan úton, amely azóta is meghatározza a munkámat.</p>
+      <p>Ma az motivál leginkább, amikor látom, hogy egy sportoló vagy egy csapat elkezd hinni önmagában. Amikor a bizonytalanság helyét fokozatosan átveszi az önbizalom, a félelem helyét a bátorság, a görcsös akarás helyét pedig a felszabadult teljesítmény.</p>
+      <p>&nbsp;</p>
+      <p>Hiszem, hogy a tartós fejlődés mindig belülről indul. A pályán elért eredmények pedig ennek a belső munkának a természetes következményei.</p>
+    </div>
+  </section>
+
+  <!-- MIÉRT / MIBEN -->
+  <section class="why" data-header-theme="light">
+    <div class="why__col reveal">
+      <h2>Miért csinálom?</h2>
+      <p>Hiszek abban, hogy akárhány éves is vagy, mindig van lehetőség fejlődni – testben, lélekben, gondolkodásban. A saját sportoló-utam, a család-munka-hobbi egyensúlyának megtalálása és a személyes fejlődésem rengeteget adott nekem, és ezt a tapasztalatot szeretném átadni.</p>
+      <p>Hiszem, hogy a korlátok csak a fejünkben léteznek – és azt is, hogy ezeket le tudjuk bontani, hogy valami igazán fantasztikusat tudjunk aztán felépíteni.</p>
+    </div>
+    <div class="why__col why__list reveal">
+      <h2>Miben tudok segíteni?</h2>
+      <p>✔ Sportolókat támogatok abban, hogy elérjék a kitűzött céljaikat – nemcsak technikailag, hanem fejben is.</p>
+      <p>✔ Sportszülőknek segítek abban, hogy gyermeküket megfelelően tudják támogatni a sportban, a stresszkezelésben, az egyensúly megteremtésében.</p>
+      <p>✔ Segítek az edzőknek abban, hogy megtalálják a legjobb motivációs eszközöket sportolóik számára</p>
+      <p>✔ Csapatsportok esetében támogatom a közös célok megfogalmazását, a csapatszellem és a belső kohézió erősítését.</p>
+      <p>&nbsp;</p>
+      <p>Ha kíváncsi vagy, hogyan tudlak Téged vagy a Csapatodat segíteni, fordulj hozzám bizalommal!</p>
+    </div>
+    <div class="why__cta">
+      <a class="btn btn--black" href="/#kapcsolat">INGYENES KONZULTÁCIÓ</a>
+    </div>
+  </section>
+
+  <!-- EGYÉNI ÜLÉS -->
+  <section class="session" aria-labelledby="session-title">
+    <div class="session__text reveal">
+      <h2 id="session-title">Hogyan zajlik egy mentáltréning ülés?</h2>
+      <ul>
+        <li>Egy egyéni ülés 55–60 perc.</li>
+        <li>Munkám alapja a teljes titoktartás, így amiről beszélgetünk, az köztünk marad. Egy biztonságos, elfogadó térben dolgozunk, ahol őszintén beszélhetsz arról, ami éppen foglalkoztat, nehézséget okoz, vagy amiben szeretnél fejlődni.</li>
+        <li>Nem kész válaszokat kapsz tőlem. Kérdésekkel, gyakorlatokkal és különböző mentális eszközökkel segítelek abban, hogy jobban megértsd a saját működésedet, felismerd az erőforrásaidat, és megtaláld a számodra működő megoldásokat.</li>
+        <li>Nem kell magaddal hoznod semmit – csak a nyitottságodat. Sőt, a legjobb, ha minden mást kívül tudsz hagyni arra az egy órára.</li>
+      </ul>
+    </div>
+    <Img class="session__img" src={rendelo} alt="A mentáltréning ülések helyszíne: otthonos konzultációs szoba" sizes="(max-width: 900px) 100vw, 50vw" widths={[480, 840]} />
+  </section>
+
+  <!-- CSOPORTOS FOGLALKOZÁS + STORY KÉPEK -->
+  <section class="team" aria-labelledby="team-title">
+    <div class="team__sticky">
+      <div class="team__text">
+        <h2 id="team-title">Hogyan zajlik egy csoportos sport mentáltréning vagy team coaching foglalkozás?</h2>
+        <p>Sportcsapatok esetében egy-egy foglalkozás általában 60–90 perc, a sportolók életkorától, a létszámtól és a feldolgozott témától függően.</p>
+        <p>Edzői csapatokkal jellemzően 90–120 perces alkalmakban dolgozom.</p>
+        <p>A foglalkozások mindig interaktívak. Fontos számomra, hogy a résztvevők ne egy előadást hallgassanak, hanem aktív részesei legyenek a közös munkának, és valóban azt érezzék: ez az alkalom róluk és nekik szól.</p>
+        <p>A témát előzetesen egyeztetjük az edzővel vagy a szakmai vezetővel, és mindig az adott csapat aktuális helyzetéből indulunk ki. Lehet szó például kommunikációról, csapatkohézióról, önbizalomról, motivációról, fókuszról, hibázásról, stressz- és érzelemkezelésről, felelősségvállalásról vagy éppen egy, a csapatban kialakult nehéz helyzetről.</p>
+        <p>A közös munka alapja a bizalom és a biztonságos légkör. Ezért már az első alkalommal lefektetjük az egyik legfontosabb szabályunkat:</p>
+        <p>„Ami a foglalkozáson történik, az ott is marad.”</p>
+        <p>A résztvevők személyes megosztásai nem kerülnek tovább. Az edzővel (ha nem vesz részt) vagy szakmai vezetővel a folyamatot, a tapasztalatokat és a fejlesztési irányokat egyeztetjük – nem azt, hogy egy-egy sportoló mit mondott a foglalkozáson.</p>
+        <p>Nincs két egyforma csapat, ezért nincs két egyforma foglalkozás sem. A közös munka során arra reagálok, ami az adott csapatban éppen jelen van, és arra, amire a fejlődéshez akkor a leginkább szükségük van.</p>
+        <a class="btn btn--white" href="/#kapcsolat">Beszéljünk!</a>
+      </div>
+    </div>
+    <div class="team__stories">
+      <Img class="team__story team__story--1" src={story1} alt="Instagram story: A mai „dolgozószobám”" sizes="(max-width: 900px) 62vw, 25vw" widths={[360, 760]} />
+      <Img class="team__story team__story--2" src={story3} alt="Instagram story: útjelző tábla" sizes="(max-width: 900px) 62vw, 21vw" widths={[300, 760]} />
+      <Img class="team__story team__story--3" src={story2} alt="Instagram story: téglaépület" sizes="(max-width: 900px) 62vw, 19vw" widths={[280, 760]} />
+    </div>
+  </section>
+
+  <!-- GYIK -->
+  <section class="faq" data-header-theme="light" aria-labelledby="faq-title">
+    <div class="faq__intro">
+      <h2 id="faq-title">Gyakori kérdések</h2>
+      <p>Igyekszem minden kérdésed megválaszolni, hogy értsd valójában mekkora javulást várhatsz a teljesítményedben!</p>
+    </div>
+    <ol class="faq__list">
+      {faqs.map((f, i) => (
+        <li class="faq-card" style={`--i:${i};--bg:${f.bg};${f.fg ? `--fg:${f.fg}` : ''}`}>
+          <span class="faq-card__num">{String(i + 1).padStart(2, '0')}</span>
+          <h3>{f.q}</h3>
+          <p>{f.a}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+</BaseLayout>

@@ -1,0 +1,52 @@
+---
+import { NAV, SITE } from '../config';
+import SocialIcons from './SocialIcons.astro';
+const year = new Date().getFullYear();
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<footer class="site-footer">
+  <video
+    class="site-footer__video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="none"
+    poster="/assets/img/footer-video-poster.jpg"
+    data-lazy-video
+  >
+    <source data-src="/assets/video/footer.mp4" type="video/mp4" />
+  </video>
+  <div class="site-footer__inner">
+    <a href="/" class="site-footer__logo" aria-label="Mindforge – főoldal">
+      <img src="/assets/img/logo.png" alt="mindforge" width="700" height="210" loading="lazy" />
+    </a>
+
+    <address class="site-footer__contact">
+      {SITE.owner}<br />
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a><br />
+      <a href={SITE.phoneHref}>{SITE.phone}</a><br />
+      Sport mentáltréning Győrben, Budapesten és online
+    </address>
+
+    <div class="site-footer__links">
+      <ul class="site-footer__nav">
+        {NAV.map((item) => (
+          <li><a href={item.href} class:list={{ 'is-active': item.href === path }}>{item.label}</a></li>
+        ))}
+      </ul>
+      <ul class="site-footer__legal">
+        <li><a href="/adatkezelesi-nyilatkozat">Adatkezelési Nyilatkozat</a></li>
+        <li><a href="/impresszum">Impresszum</a></li>
+      </ul>
+    </div>
+
+    <div class="site-footer__bottom">
+      <SocialIcons class="site-footer__social" />
+      <p class="site-footer__copy">
+        © {year} by MINDFORGE. Készítette és fenntartja:{" "}
+        <a href="https://www.stratosweb.hu/" target="_blank" rel="noopener">STRATOS MEDIA AGENCY</a>
+      </p>
+    </div>
+  </div>
+</footer>

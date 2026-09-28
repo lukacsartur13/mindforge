@@ -1,0 +1,38 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Img from './Img.astro';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+  heading: string;
+  intro: string;
+  active: 'all' | 'mentalis-pillerek';
+}
+const { posts, heading, intro, active } = Astro.props;
+const fmt = new Intl.DateTimeFormat('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' });
+const excerpt = (html: string) =>
+  html.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 260) + '…';
+---
+<section class="blog">
+  <nav aria-label="Blog kategóriák">
+    <ul class="blog-cats">
+      <li><a href="/blog" class:list={{ 'is-active': active === 'all' }} aria-current={active === 'all' ? 'page' : undefined}>Összes bejegyzés</a></li>
+      <li><a href="/blog/kategoria/mentalis-pillerek" class:list={{ 'is-active': active === 'mentalis-pillerek' }} aria-current={active === 'mentalis-pillerek' ? 'page' : undefined}>Mentális Pillérek</a></li>
+    </ul>
+  </nav>
+  <h1>{heading}</h1>
+  <p class="blog__intro">{intro}</p>
+  {posts.map((post, i) => (
+    <article class="post-card reveal">
+      <Img class="post-card__img" src={post.data.cover} alt={post.data.coverAlt} loading={i === 0 ? 'eager' : 'lazy'} sizes="(max-width: 900px) 100vw, 530px" widths={[480, 800, 1060]} />
+      <div class="post-card__body">
+        <p class="post-card__meta">
+          <time datetime={post.data.date.toISOString()}>{fmt.format(post.data.date)}</time> · {post.data.readingTime} perc olvasás
+        </p>
+        <h2><a href={`/blog/${post.id}`}>{post.data.title}</a></h2>
+        <p class="post-card__excerpt">{excerpt(post.body ?? '')}</p>
+        <p class="post-card__more" aria-hidden="true">Tovább olvasom →</p>
+      </div>
+    </article>
+  ))}
+</section>

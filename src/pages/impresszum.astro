@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import content from '../content/legal/impresszum.html?raw';
+---
+<BaseLayout
+  title="Impresszum | MINDFORGE"
+  breadcrumbs={[{ name: 'Impresszum', href: '/impresszum' }]}
+  description="A mindforge.hu weboldal üzemeltetőjének adatai: Seregély Edit egyéni vállalkozó."
+>
+  <article class="legal">
+    <h1>Impresszum</h1>
+    <Fragment set:html={content} />
+  </article>
+</BaseLayout>

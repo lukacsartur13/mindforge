@@ -1,0 +1,49 @@
+# Apache / cPanel tárhelyhez: régi Wix URL-ek 301-es átirányítása
+RewriteEngine On
+DirectorySlash Off
+ErrorDocument 404 /404.html
+# www-re és HTTPS-re terelés (egyetlen kanonikus domain)
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^(.*)$ https://www.mindforge.hu/$1 [R=301,L]
+
+# Záró perjeles URL -> perjel nélküli (kanonikus forma)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+# Régi Wix URL-ek 301-es átirányítása
+RewriteRule ^r%C3%B3lam/?$ /rolam [R=301,L,NE]
+RewriteRule ^rólam/?$ /rolam [R=301,L]
+RewriteRule ^blank/?$ /sikersztorik [R=301,L]
+RewriteRule ^terms-and-conditions/?$ /adatkezelesi-nyilatkozat [R=301,L]
+RewriteRule ^privacy-policy/?$ /impresszum [R=301,L]
+RewriteRule ^programs/?$ / [R=301,L]
+RewriteRule ^challenge-page/ / [R=301,L]
+RewriteRule ^blog/categories/mentalis-pillerek/?$ /blog/kategoria/mentalis-pillerek [R=301,L]
+RewriteRule ^post/hogyan-lett-a-mentaliserobol-mindforge/?$ /blog/hogyan-lett-a-mentaliserobol-mindforge [R=301,L]
+RewriteRule ^post/mentális-pillérek-1-rész-a-fókusz-ereje/?$ /blog/mentalis-pillerek-1-resz-a-fokusz-ereje [R=301,L]
+RewriteRule ^post/mentális-pillérek-2-a-belső-hang/?$ /blog/mentalis-pillerek-2-a-belso-hang [R=301,L]
+RewriteRule ^post/mentális-pillérek-3-nincs-fejlődés-hiba-nélkül/?$ /blog/mentalis-pillerek-3-nincs-fejlodes-hiba-nelkul [R=301,L]
+RewriteRule ^post/mentális-pillérek-4-szemléletváltás/?$ /blog/mentalis-pillerek-4-szemleletvaltas [R=301,L]
+RewriteRule ^post/mentális-pillérek-5-a-rutin-biztonsága/?$ /blog/mentalis-pillerek-5-a-rutin-biztonsaga [R=301,L]
+RewriteRule ^post/ /blog [R=301,L]
+
+# /rolam -> /rolam/index.html (belső kiszolgálás, perjel nélküli URL-lel)
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteCond %{REQUEST_FILENAME}/index.html -f
+RewriteRule ^(.+)$ /$1/index.html [L]
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/avif "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType video/mp4 "access plus 1 month"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/xml image/svg+xml
+</IfModule>

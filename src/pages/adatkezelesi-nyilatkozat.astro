@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import content from '../content/legal/adatkezeles.html?raw';
+---
+<BaseLayout
+  title="Adatkezelési Nyilatkozat és ÁSZF | MINDFORGE"
+  breadcrumbs={[{ name: 'Adatkezelési Nyilatkozat', href: '/adatkezelesi-nyilatkozat' }]}
+  description="A MINDFORGE (Seregély Edit egyéni vállalkozó) adatkezelési nyilatkozata és általános szerződési feltételei."
+>
+  <article class="legal">
+    <h1>Adatkezelési Nyilatkozat</h1>
+    <Fragment set:html={content} />
+  </article>
+</BaseLayout>

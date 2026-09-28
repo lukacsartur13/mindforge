@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Img from '../components/Img.astro';
+import cikk from '../assets/img/cikk-derekba-tort.jpg';
+
+const testimonials = [
+  {
+    label: 'Szülői visszajelzés',
+    paragraphs: [
+      '„Áron mindig nagyon szívesen ment a foglalkozásokra és a kiadott házi feladatokat is nagyon szívesen csinálta (ezt azért nála érdekes volt látni), illetve szívesen mesélt is az ott történt dolgokról és beszélgetésekről (ezt is érdekes volt megtapasztalni).',
+      'A foglalkozások hatására kicsit lecsillapodott, azóta nem olyan lobbanékony és nem azonnal mást hibáztat és másban keresi a hibát, hanem mérlegel és úgy próbál meg döntést hozni.',
+      'Sokkal inkább elfogadja a jó tanácsot és a pozitív vagy negatív kritikát is jobban kezeli. Valóban nőtt az önbizalma is, de a jó irányba, ami a pályán is megmutatkozik jobb teljesítmény formájában.”',
+    ],
+    author: 'Török Péter sportszülő',
+  },
+  {
+    label: 'Szakmai vezetői visszajelzés',
+    paragraphs: [
+      '„Edit, „majdnem” minden szempontból megfelelő. A pozitív kisugárzása mellett, a szakmai felkészültsége is figyelemre méltó. A jókedve, a vidámsága és az optimizmusa magávalragadó, ami nagymértékben megkönnyíti a munkát Vele.',
+      'A mi futballklubunk teljes mértékben megtalálta személyében az ideális mentális felkészítőt a sportolóinkhoz.',
+      'Talán az egyetlen hibájaként azt hozom fel, hogy még nem szerezte meg a futballedzői papírokat! :)) „',
+    ],
+    author: 'Nagy László – Szakmai vezető, Győrújfalu SE',
+  },
+  {
+    label: 'Edzői visszajelzés',
+    paragraphs: [
+      'Kedves Edit,',
+      'Szeretném kifejezni a legmélyebb hálámat és elismerésemet a munkádért, amit a két tanítványom, a 2024-es karate világbajnokságra való felkészítésében végeztél. A te szakértelmed és támogatásod kulcsszerepet játszott abban, hogy mindketten magabiztosabbá és összeszedettebbé váltak a verseny előtt. A veled való közös munka lehetővé tette számukra, hogy a legjobb formájukat hozzák, és ne csak fizikálisan, hanem mentálisan is erősebbé váljanak.',
+      'A segítségeddel sikerült elérnünk, hogy egy súlycsoporttól rettegő és egészségtelenül diétázó fiatal lány, magabiztosan és bátran álljon bele a saját kategóriájában való küzdelembe és legyen ott sikeres. Ez hosszútávon nem csak a sport területén, de a magánéletben is rengeteget segít majd neki. Köszönjük a türelmedet, elkötelezettségedet és a hitet, amit beléjük fektettél. Biztos vagyok benne, hogy a világbajnokságon a te támogatásod nélkül nem tudtak volna ilyen magabiztosan szerepelni. Neked is köszönhetjük, hogy csapatunk 2 világbajnokkal többet tudhat magának. Minden jót kívánok a jövőbeli munkádhoz, és remélem, hogy még sok versenyzőnek segíthetsz elérni a céljait!',
+      'Üdvözlettel,',
+    ],
+    author: 'Horváth Krisztián - Vezető edző, Seijitsu dojo, Full Contact Karate',
+  },
+  {
+    label: 'Sportolói visszajelzés',
+    paragraphs: [
+      '„Edit segít nekem abban, hogy fejben is a helyemen legyek, hiszen a testépítés erősen igénybe veszi mentálisan az embert. Az ülések támogatnak, hogy mindig fókuszált maradjak a céljaimra. A sporton túli események nem válhatnak akadályozó tényezőkké, ezért Edit hangsúlyt fektet ezek keretbe foglalására és tisztázására is. Mióta együtt dolgozunk, önbizalommal telibb, erősebb, határozottabb személyiséggé váltam. Hálás vagyok mindazért, amit Edit értem tesz azzal, hogy egyengeti az utamat.”',
+    ],
+    author: 'Szemenovics Alexandra – testépítő',
+  },
+  {
+    label: 'Szülői visszajelzés',
+    paragraphs: [
+      '"Annyi klassz pedagógus, edző kerül egy kamasz sportoló életébe társként, mentorként, vezetőként és tűznek ki célokat neki és vele, amikhez legjobb tudásuk szerint terelik mindig közelebb, elhivatottságtól, de legalábbis a közös siker lehetőségének vágyától hajtva.',
+      '&nbsp;',
+      '...és akkor ott van a kamasz sportoló, aki sokkal érzékenyebb, változékonyabb, meggondolatlanabb, mint az a felnőtt, aki dolgozik vele épp.',
+      'Anyaként drukkolok nagyon.',
+      'Annak is persze, hogy a tanára, edzője által feltett lécet megugorja, felnőttként látom is, hogy ezek értékes célok.',
+      '...de bevallom anyaként még inkább drukkolok annak, hogy a viharos kamaszságában találjon örömöt, békét, biztonságot, harmóniát és persze kalandot, kihívást, sikereket és sztorikat, amiket majd emleget 40 plusszosan (és nem akkor áll majd neki a határait feszegetni...)',
+      '&nbsp;',
+      'Anyaként amatőr drukker vagyok, elfogult vagyok és érzelmileg erősen befolyásolt.',
+      '&nbsp;',
+      'Editben, sport mentáltrénerként, úgy érzem professzionáis "drukkert" találtam.',
+      'Az hagyján, hogy biztonságos ventillálási lehetőséget, de használható támogatást is kínál a kamasznak, amit örömmel, valóban használ is!',
+      'Köszönöm a figyelmed, köszönöm, hogy olyan alkalmakat teremtesz, amikre a kamasz azt tudja mondani:',
+      '- Nagggyon jó volt!!!',
+      '&nbsp;',
+      '...és akkor is ezt tudja mondani végül, ha közben fogyott pár zsepi..."',
+      '&nbsp;',
+    ],
+    author: 'Hosszú Judit sportszülő',
+  },
+  {
+    label: 'Szülői visszajelzés',
+    paragraphs: [
+      '„Kedves Edit! Köszönjük szépen az első beszélgetést, Veronikának jó élményt jelentett. Tegnap nagyon jól sikerült a versenye, 87 indulóból az 5. helyet érte el, gyönyörűen vívott, csak a későbbi nyertes tudta egyetlen tussal legyőzni a 8 között.”',
+    ],
+    author: 'M. Eszter sportszülő',
+  },
+];
+---
+<BaseLayout
+  title="Sikersztorik – vélemények a mentáltréningről | MINDFORGE"
+  breadcrumbs={[{ name: 'Sikersztorik', href: '/sikersztorik' }]}
+  description="Sportolók, sportszülők, edzők és szakmai vezetők visszajelzései Seregély Edit sport mentáltréner munkájáról – karate világbajnoktól futballcsapatokig."
+>
+  <section class="testimonials" aria-labelledby="sikersztorik-cim">
+    <h1 id="sikersztorik-cim">Sikersztorik</h1>
+    <div class="testimonials__list">
+      {testimonials.map((t) => (
+        <blockquote class="testimonial reveal">
+          <p class="testimonial__label">{t.label.toUpperCase()}</p>
+          {t.paragraphs.map((p) => <p set:html={p} />)}
+          <p class="testimonial__author">{t.author}</p>
+        </blockquote>
+      ))}
+    </div>
+  </section>
+
+  <section class="press" aria-labelledby="press-title">
+    <h2 id="press-title">Derékba tört sportkarrierek</h2>
+    <div class="press__text reveal">
+      <p>Mélyen megrázta a sportvilágot Zója-Katona Márk esete: a labdarúgó egy mérkőzésen szenvedett életveszélyes sérülést. Profi pályafutása ezzel véget ért, sport mentáltrénert kérdeztünk arról, miként dolgozhatja fel szertefoszló álmait az ETO Akadémia reménysége.</p>
+      <p>Zója-Katona Márkot a diósgyőri pályán érte fájdalmas rúgás. A miskolci kórházba szállították, ahol megállapították, hogy jobb veséje megrepedt, hasürege vérrel telt, ezért azonnal életmentő műtétet hajtottak végre rajta. A jelenleg érvényes szabályok szerint Magyarországon hivatalosan nem léphet pályára, mivel a rendelkezések kifejezetten tiltják azt abban az esetben, ha létfontosságú, páros szerv valamelyikét elveszíti a sportoló.</p>
+      <p>Seregély Edit sport mentáltréner és -coach felhívta a figyelmet arra, hogy előre fel kell készülni az élsport utáni életre. „Ha valaki eljön hozzám mentális támogatásért, és beszélgetünk a célokról, akkor lerajzoljuk, hogy vannak a sportbéli, és a sporton kívüli életben kitűzött célok. Nem teszünk fel egy lapra mindent. Mindenképpen készülni kell arra, hogy a sportolói életem után lesz egy másik életem, és arra nem lehet egyik napról a másikra „átcsekkolni”, ehhez idő kell és ezt muszáj párhuzamosan felépíteni.” Márk esetében hónapokig tartó munkára lesz szükség ahhoz, hogy fizikálisan és mentálisan is felépüljön. „Biztos vagyok benne, hogy rengeteget tud profitálni abból, hogy vele ez történt, még ha most ezt nem is így gondolja” – emelte ki a sportcoach, aki Szilágyi Áron példáját hozta fel: az olimpiai bajnok kardvívó is tanulásba fektetett energiát azért, hogy felkészüljön az aktív évek utáni életre.</p>
+      <p>Márk napról napra jobban érzi magát, lapunk megjelenésekor már az otthonában folytathatja a lábadozást.</p>
+      <p>Írta: Venesz Klaudia</p>
+      <p>Forrás: Győr + Presszó Magazin</p>
+      <p>Megjelenés dátuma: 2024. október 25.</p>
+    </div>
+    <a class="press__img reveal" href="https://www.gyorplusz.hu/sport/derekba-tort-sportkarrier/" target="_blank" rel="noopener" aria-label="A teljes cikk a gyorplusz.hu oldalon">
+      <Img src={cikk} alt="Derékba tört sportkarrierek – cikk a Győr + Presszó Magazinban" sizes="(max-width: 900px) 100vw, 740px" widths={[480, 740, 1179]} />
+    </a>
+  </section>
+</BaseLayout>

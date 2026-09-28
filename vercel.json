@@ -1,0 +1,122 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/r%C3%B3lam",
+      "destination": "/rolam",
+      "permanent": true
+    },
+    {
+      "source": "/rólam",
+      "destination": "/rolam",
+      "permanent": true
+    },
+    {
+      "source": "/blank",
+      "destination": "/sikersztorik",
+      "permanent": true
+    },
+    {
+      "source": "/terms-and-conditions",
+      "destination": "/adatkezelesi-nyilatkozat",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/impresszum",
+      "permanent": true
+    },
+    {
+      "source": "/programs",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/challenge-page/:id",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/categories/mentalis-pillerek",
+      "destination": "/blog/kategoria/mentalis-pillerek",
+      "permanent": true
+    },
+    {
+      "source": "/post/hogyan-lett-a-mentaliserobol-mindforge",
+      "destination": "/blog/hogyan-lett-a-mentaliserobol-mindforge",
+      "permanent": true
+    },
+    {
+      "source": "/post/ment%C3%A1lis-pill%C3%A9rek-1-r%C3%A9sz-a-f%C3%B3kusz-ereje",
+      "destination": "/blog/mentalis-pillerek-1-resz-a-fokusz-ereje",
+      "permanent": true
+    },
+    {
+      "source": "/post/ment%C3%A1lis-pill%C3%A9rek-2-a-bels%C5%91-hang",
+      "destination": "/blog/mentalis-pillerek-2-a-belso-hang",
+      "permanent": true
+    },
+    {
+      "source": "/post/ment%C3%A1lis-pill%C3%A9rek-3-nincs-fejl%C5%91d%C3%A9s-hiba-n%C3%A9lk%C3%BCl",
+      "destination": "/blog/mentalis-pillerek-3-nincs-fejlodes-hiba-nelkul",
+      "permanent": true
+    },
+    {
+      "source": "/post/ment%C3%A1lis-pill%C3%A9rek-4-szeml%C3%A9letv%C3%A1lt%C3%A1s",
+      "destination": "/blog/mentalis-pillerek-4-szemleletvaltas",
+      "permanent": true
+    },
+    {
+      "source": "/post/ment%C3%A1lis-pill%C3%A9rek-5-a-rutin-biztons%C3%A1ga",
+      "destination": "/blog/mentalis-pillerek-5-a-rutin-biztonsaga",
+      "permanent": true
+    },
+    {
+      "source": "/post/:slug",
+      "destination": "/blog",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/_astro/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
+      ]
+    }
+  ]
+}

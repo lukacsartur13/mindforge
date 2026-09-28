@@ -1,0 +1,224 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Img from '../components/Img.astro';
+import hero from '../assets/img/hero-tennis.jpg';
+import imgNemSportolo from '../assets/img/eset-nem-sportolo.jpg';
+import imgSportszulo from '../assets/img/eset-sportszulo.jpg';
+import imgSportolo from '../assets/img/eset-sportolo.jpg';
+import imgEdzo from '../assets/img/eset-edzo.jpg';
+import imgMentalis from '../assets/img/eset-mentalis-tanacsadas.jpg';
+import icfMember from '../assets/img/icf-member.png';
+import icfSmc from '../assets/img/icf-sport-mental-coach.png';
+import futo from '../assets/img/sikersztorik-futo.jpg';
+
+const slides = [
+  {
+    id: 'dia-sportolo',
+    title: 'Mikor érdemes felkeresned sportolóként?',
+    items: [
+      'Úgy érzed, mindent beleadsz az edzésekbe, mégsem jönnek az eredmények',
+      'Túl nagy a külső nyomás és ez meggátol abban, hogy kihozd magadból azt, amire képes lennél',
+      'Nem tudod, hogyan határozd meg a reális célokat - segítek megtalálni az utadat',
+      'Elakadtál, hiányzik a régi lendület, szeretnéd magadban ismét megtalálni a tüzet',
+      'Önbizalomhiánnyal küszködsz, ami megakadályoz abban, hogy sikeresebb legyél',
+      'Fáradt vagy és elveszett a motiváció',
+      'Sportsérülésből szeretnél újra felépülni és újra "ringbe" szállni',
+      'Problémás a kommunikáció edző vagy akár a szülők irányába',
+      'Konfliktusaid vannak, szeretnéd megoldani őket',
+      'Nehezen tudsz fókuszálni, szeretnéd fejleszteni',
+      'Úgy érzed, nincs időd semmire',
+      'Szeretnél túllépni a belső gátakon',
+      'Túl nagy benned a versenydrukk és szeretnéd megtanulni, hogyan kezeld',
+      'Kézzel fogható módszerekre vágysz, hogyan hozd ki magadból a legtöbbet',
+    ],
+    button: { label: 'Bemutatkozás', href: '/rolam' },
+  },
+  {
+    id: 'dia-sportszulo',
+    title: 'Sportszülőként segítségre van szükséged?',
+    items: [
+      'Szülőként nehéz dolog jól támogatni gyermekünket, ha egyre komolyabban sportol. Néha elbizonytalanodhatsz, mikor, mivel teszel jót neki. Kérdésként merülhet fel benned, hogyan támogasd őt?',
+      'Nehéz megoldani az állandó logisztikát és segítséget szeretnél abban, hogyan lehet jobban csinálni? Sportszülőként is fontos, hogy megtaláld az egyensúlyt család-munka-szabadidő háromszögében! Mert Te nem purcanhatsz ki, Te vagy a család motorja!',
+      'Sportoló gyermek szülőjeként is elfogyhat a lelkesedés... Ha elakadsz, szívesen segítek!',
+      'Néha nem tudod, hogyan, milyen mondatokkal segítsd gyermekedet, ha támogatásra szorul',
+      'Hogyan kommunikálj az edzőkkel és tanárokkal?',
+      'Időnként szükséged lehet arra, hogy kibeszéld magadból a benned felgyülemlett problémákat. Ha elfáradsz, jól jön valaki, aki megérti, miről beszélsz!',
+    ],
+    button: { label: 'Sikersztorik', href: '/sikersztorik' },
+  },
+  {
+    id: 'dia-edzo',
+    title: 'Edzőként nagyon is jól látod, ha segítségre van szükség!',
+    items: [
+      'Edzőként nap mint nap szembesülsz a sportolód korlátaival.',
+      'Tisztán látod a fejlődést vagy éppen a megtorpanást.',
+      'Azt is látod, ha a mindig jókedélyű sportolód hirtelen megváltozik.',
+      'Sokszor jobban ismered a sportolódat, mint a szülei. Ő pedig számít a véleményedre, támogatásodra nem csak a sportban, de a pályán kívül is.',
+      'Ha támogatni szeretnéd őt abban, hogy mentálisan megerősödjön és erről nyíltan tudsz vele beszélni, az a TI kapcsolatotokra is jó hatással lesz és nagyban növeli majd az eredményességeteket is.',
+      'Az a tapasztalatom, hogy sokkal jobb eredményeket érnek el azok a sportolók, ahol az edző kifejezi a mentális fejlesztés fontosságát és támogatja is azt. Itt egy team részese leszek, de a főszerep a Tiéd marad!',
+    ],
+    button: { label: 'Blog', href: '/blog' },
+  },
+];
+
+const cases = [
+  { n: 1, img: imgNemSportolo, alt: 'Szabadtéri edzést végző nő', title: 'Nem sportolói életmóddal vagy témával' },
+  { n: 2, img: imgSportszulo, alt: 'Meditáló nő jógaszőnyegen', title: 'Sportszülőként segítségre van szükséged?', slide: 1 },
+  { n: 3, img: imgSportolo, alt: 'Futópályán versenyző atléták', title: 'Mikor érdemes felkeresned sportolóként?', slide: 0 },
+  { n: 4, img: imgEdzo, alt: 'Nyújtó sportoló naplementében', title: 'Edzőként nagyon is jól látod, ha segítségre van szükség!', slide: 2 },
+  { n: 5, img: imgMentalis, alt: 'Teniszező nő a pályán', title: 'Mentális tanácsadással' },
+];
+---
+<BaseLayout
+  title="Sport mentáltréner Győr, Budapest, online | MINDFORGE"
+  description="Sport mentáltréning és coaching sportolóknak, sportszülőknek, edzőknek és csapatoknak – Seregély Edit, Győr, Budapest és online. Ingyenes első konzultáció."
+  header="overlay"
+>
+  <!-- HERO -->
+  <section class="hero">
+    <Img class="hero__bg" src={hero} alt="Teniszező nő adogat a salakpályán, felülnézetből" loading="eager" fetchpriority="high" widths={[640, 960, 1280, 1920]} />
+    <div class="hero__content">
+      <h1>
+        <span class="hero__eyebrow">Sport mentáltréner – Seregély Edit</span>
+        Ahol a gondolkodásból teljesítmény születik
+      </h1>
+      <p class="hero__lead">Emeld új szintre teljesítményed az életben és sportban egyaránt a segítségemmel!</p>
+      <a class="btn btn--white" href="#kapcsolat">Kezdjük</a>
+    </div>
+  </section>
+
+  <!-- A MENTÁLIS ERŐ -->
+  <div class="section-dark">
+    <section class="power" aria-labelledby="power-title">
+      <div class="bar-head">
+        <h2 id="power-title">A mentális erő</h2>
+        <a class="btn btn--white" href="/rolam">Bemutatkozás</a>
+      </div>
+      <div class="power__videos reveal">
+        <video autoplay muted loop playsinline preload="none" poster="/assets/img/video-1-poster.jpg" data-lazy-video aria-hidden="true">
+          <source data-src="/assets/video/mentalis-ero-1.mp4" type="video/mp4" />
+        </video>
+        <video autoplay muted loop playsinline preload="none" poster="/assets/img/video-2-poster.jpg" data-lazy-video aria-hidden="true">
+          <source data-src="/assets/video/mentalis-ero-2.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="power__about">
+        <h3>Ki vagyok én?</h3>
+        <div class="power__about-text reveal">
+          <p>“Nem azért dolgozom sportolókkal, hogy megváltoztassam őket. Azért, hogy hozzáférjenek ahhoz, ami már most is bennük van.</p>
+          <p>Sport mentáltrénerként abban segítem a sportolókat, hogy a felkészülés során megszerzett tudásukat a legfontosabb pillanatokban is magabiztosan tudják megmutatni.</p>
+          <p>Sportcoachként, coachként és NLP Mesterként olyan szemlélettel dolgozom, amely segít mélyebben megérteni, hogyan gondolkodik, érez és működik az a sportoló vagy csapat, akivel együtt dolgozom. Ennek köszönhetően minden folyamat személyre szabott, legyen szó egyéni sportolóról, csapatról vagy edzői stábról.</p>
+          <p>Az edző a hardverrel foglalkozik. Én a szoftverrel.</p>
+          <p>Nem kívülről nézem a sportolókat. Velük megyek végig azon az úton, ahol a fejlődés, a kételyek, a kudarcok és a sikerek egymást váltják. Abban támogatom őket, hogy minden helyzetből erőt, tanulságot és önbizalmat építsenek – mert ez viszi őket előre a pályán és azon kívül is.”</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="roles" aria-labelledby="roles-title">
+      <h3 id="roles-title">Ki a sport mentáltréner és ki a coach?</h3>
+      <div class="roles__cols reveal">
+        <p>A Sport mentáltréner segíti a sportolókat a mentális felkészülésben, a teljesítményük javításában és a versenyképességük növelésében. A sportoló fizikai felkészültségén túl a teljesítménye szempontjából fontos tényező a mentális edzettsége.</p>
+        <p>A coach a coaching folyamatban kérdésekkel segít megtalálni azokat a válaszokat, amik a TE legjobb válaszaid és amelyekkel a megoldáshoz vezető utat megtalálod. A coaching nem tanácsadás, hanem inkább egy támogató és ösztönző kapcsolat, mely segít Neked önálló döntéseket hozni és előre lépni a kívánt irányba.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ESETEK -->
+  <section class="cases" data-header-theme="light" aria-labelledby="cases-title">
+    <div class="cases__intro reveal">
+      <h2 id="cases-title">Ezekben az esetekben tudok segíteni</h2>
+      <p>A jó hír, hogy a mentális erő ott van Benned és Szárnyalni fogsz, ha megleled!</p>
+    </div>
+    {cases.map((c) =>
+      c.slide !== undefined ? (
+        <a class={`case case--${c.n} reveal`} href="#esetek-reszletesen" data-slide={c.slide}>
+          <Img src={c.img} alt={c.alt} sizes="(max-width: 900px) 45vw, 250px" widths={[300, 500, 700]} />
+          <p class="case__title">{c.title}</p>
+        </a>
+      ) : (
+        <div class={`case case--${c.n} reveal`}>
+          <Img src={c.img} alt={c.alt} sizes="(max-width: 900px) 45vw, 250px" widths={[300, 500, 700]} />
+          <p class="case__title">{c.title}</p>
+        </div>
+      ),
+    )}
+  </section>
+
+  <!-- DIAVETÍTÉS -->
+  <section class="slider" data-header-theme="light" id="esetek-reszletesen" data-slider aria-roledescription="diavetítés" aria-label="Kinek segítek?">
+    <button class="slider__arrow slider__arrow--prev" type="button" data-prev aria-label="Előző">
+      <svg width="12" height="20" viewBox="0 0 12 20" aria-hidden="true"><path d="M10 2L2 10l8 8" fill="none" stroke="currentColor" stroke-width="1.5" /></svg>
+    </button>
+    <div class="slider__track">
+      {slides.map((s) => (
+        <div class="slide" id={s.id} aria-roledescription="dia">
+          <h3>{s.title}</h3>
+          <ul>
+            {s.items.map((item) => <li>{item}</li>)}
+          </ul>
+          <a class="btn btn--outline" href={s.button.href}>{s.button.label}</a>
+        </div>
+      ))}
+    </div>
+    <button class="slider__arrow slider__arrow--next" type="button" data-next aria-label="Következő">
+      <svg width="12" height="20" viewBox="0 0 12 20" aria-hidden="true"><path d="M2 2l8 8-8 8" fill="none" stroke="currentColor" stroke-width="1.5" /></svg>
+    </button>
+  </section>
+
+  <!-- SZAKMAI KÉPESÍTÉS -->
+  <section class="certs" data-header-theme="light" aria-labelledby="certs-title">
+    <div class="bar-head bar-head--light">
+      <h2 id="certs-title">SZAKMAI KÉPESÍTÉSEM</h2>
+    </div>
+    <div class="certs__logos reveal">
+      <Img src={icfMember} alt="ICF – International Coaching Federation tagság" sizes="200px" widths={[200, 400]} />
+      <Img src={icfSmc} alt="ICF akkreditált Sport Mental Coach képesítés" sizes="180px" widths={[180, 360]} />
+    </div>
+  </section>
+
+  <!-- SIKERSZTORIK -->
+  <section class="stories section-dark" aria-labelledby="stories-title">
+    <div class="bar-head">
+      <h2 id="stories-title">SIKERSZTORIK</h2>
+      <a class="btn btn--white" href="/sikersztorik">Több sikersztori</a>
+    </div>
+    <div class="stories__body">
+      <Img class="stories__img reveal" src={futo} alt="Futó sportoló a kék atlétikai pályán" sizes="(max-width: 900px) 100vw, 48vw" widths={[480, 800, 1200]} />
+      <div>
+        <blockquote class="quote reveal">
+          <p>„Kedves Edit! 🙂</p>
+          <p>A veled való munka, azért is jó, mert folyamatosan tudunk tanulni, fejlődni és ez segítség a gyerekeknek és nekem is edzőként és emberként is!</p>
+          <p>Rengeteget kapunk tőled és az itt tanult dolgokat folyamatosan tudjuk alkalmazni és hasznosítani a mindennapi edzéseken és azon kívül is!</p>
+          <p>Megtanultuk, hogy mennyire fontos magunkra és másokra is figyelni egyaránt, segíteni, tanulni és tanítani valamit másoknak, hogy jobbak legyenek és a legfontosabb, hogy mindenre van megoldás fejlődésünk érdekében!”</p>
+          <p class="quote__author">Fazekas Gábor – U’15 futball edző, Győrújfalu SE</p>
+        </blockquote>
+        <blockquote class="quote reveal">
+          <p>Kedves Edit!</p>
+          <p>Nagyon pozitív tapasztalataim vannak. A tréningek nagyon sokat segítettek a fejlődésemben.</p>
+          <p>Edit nagyon kedves és segítőkész. Nagyon jó ötletekkel és feladatokkal növelte az önbizalmamat. Terveket készített, aminek segítségével kiengyensúlyozottabb lett a teljesítményem.</p>
+          <p>Rengeteg fontos dolgot beszéltünk át, amelyekkel helyére tudtam tenni az önbecsülésem, ezzel is segített, hogy miben kell még fejlődni, de miben vagyok jó. Segített az új csapatba való beilleszkedésben. Valamint a tréningek mindig az épp aktuális helyzetemről szóltak, mindig segített abban, hogy a következő hetekben, hogyan legyek magabiztosabb, jobb, és hogyan illeszkedjek be a többiek közé.”</p>
+          <p class="quote__author">Török Áron 13 éves – Futball játékos</p>
+        </blockquote>
+        <blockquote class="quote reveal">
+          <p>"Nagyon sokat segítettek nekem a közös órák, versenyről versenyre éreztem a változást. Azt vettem észre hogy sokkal koncentráltabban és magabiztosabban tudtam tatamira állni, ami nagyon sokat számított a cél elérésében. Amint elkezdtük a közös munkát, azzal együtt jöttek az eredmények és éreztem a fejlődést az első perctől kezdve. A VB volt a legfőbb cél és az is sikerült, amivel egy álmom vált valóra. Nagyon hálás vagyok a segítségedért és a jó hangulatú órákért!" ❤️</p>
+          <p class="quote__author">Eliza 18 éves - Karate Világbajnok 2024</p>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOGYAN INDULUNK -->
+  <section class="start section-cream" data-header-theme="light" aria-labelledby="start-title">
+    <h2 id="start-title">Hogyan indulunk?</h2>
+    <ul class="reveal">
+      <li>Töltsd ki az űrlapot és kérlek jelölj meg néhány időpontot, hogy mikor kereshetlek telefonon! Vagy csörgess meg a mobilomon és beszéljünk mindjárt személyesen! Előfordulhat, hogy nem tudom felvenni, de mindenképpen visszahívlak!</li>
+      <li>Az első alkalom egy ingyenes konzultáció lesz 45-50 percben. Egy beszélgetésre készülj, ahol elmondod, miben kéred a segítségemet. Meghatározzuk, hogy céljaid eléréséhez hány alkalomra lesz szükség. Ez egyénenként, célonként és problémánként változó lehet. Van aki egy konkrét probléma megoldására törekszik és ez valóban néhány alkalommal "orvosolható". Azok a sportolók viszont, akiknek a tervei hosszabb befektetést igényelnek, ott a folyamatos kísérést szoktam javasolni. Ezt élőben megbeszéljük!</li>
+      <li>Az első konzultáció után eldöntheted, hogy szeretnél-e velem együtt dolgozni. Érezni fogod, hogy tudunk-e egy hullámhosszon lenni. A közös munkába Te is belefekteted majd az energiát, ez csak így működik. Minden alkalommal fogsz kapni házi feladatot is, melyet a következő alkalommal megbeszélünk. Mert a változáshoz elsősorban TE kellesz!</li>
+      <li>Hetente vagy kéthetente találkozunk, előre egyeztetett időpontban.</li>
+      <li>A találkozások személyesen Győrben vagy Budapesten, esetleg online módon is történhetnek.</li>
+    </ul>
+  </section>
+
+  <ContactForm />
+</BaseLayout>
