@@ -14,10 +14,17 @@ const blog = defineCollection({
     updated: z.coerce.date().optional(),
     cover: image(),
     coverAlt: z.string().default(''),
-    readingTime: z.number().default(1),
+    /** Ha üres, a szöveg hosszából számolódik */
+    readingTime: z.number().optional(),
     category: z.string().optional(),
-    oldSlug: z.string().optional(),
   }),
 });
 
 export const collections = { blog };
+
+/** Olvasási idő percben (~200 szó/perc), ha a posztban nincs kézzel megadva */
+export function readingMinutes(post: { body?: string; data: { readingTime?: number } }): number {
+  if (post.data.readingTime) return post.data.readingTime;
+  const words = (post.body ?? '').replace(/[#*_>\[\]()`-]/g, ' ').split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+}

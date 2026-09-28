@@ -4,6 +4,7 @@ import { getImage } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Img from '../../components/Img.astro';
 import { SITE, abs } from '../../config';
+import { readingMinutes } from '../../content.config';
 
 export async function getStaticPaths() {
   const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
@@ -66,7 +67,7 @@ const articleLd = {
       )}
     </nav>
     <p class="post__meta">
-      <a href="/rolam" rel="author">{SITE.owner}</a> · <time datetime={post.data.date.toISOString()}>{fmt.format(post.data.date)}</time> · {post.data.readingTime} perc olvasás
+      <a href="/rolam" rel="author">{SITE.owner}</a> · <time datetime={post.data.date.toISOString()}>{fmt.format(post.data.date)}</time> · {readingMinutes(post)} perc olvasás
     </p>
     <h1>{post.data.title}</h1>
     <Img class="post__cover" src={post.data.cover} alt={post.data.coverAlt} loading="eager" fetchpriority="high" sizes="(max-width: 820px) 100vw, 740px" widths={[480, 740, 1200]} />

@@ -16,11 +16,25 @@ npm run build    # éles build a dist/ mappába
 
 - `src/pages/` – oldalak (index, rolam, sikersztorik, blog, jogi oldalak, 404)
 - `src/components/` – fejléc/menü, lábléc, kapcsolati űrlap, blog lista
-- `src/content/blog/*.md` – blogposztok. **Új poszt = új .md fájl** (a frontmatter mintája a meglévőkben).
+- `src/content/blog/*.md` – blogposztok (Markdown), képeik a `src/content/blog/images/` mappában. Kényelmesen az **/admin** felületen szerkeszthetők.
 - `src/content/legal/` – Adatkezelési Nyilatkozat, Impresszum szövege
 - `src/styles/global.css` – teljes arculat (színek, betűk a fájl tetején, változókban)
 - `src/config.ts` – elérhetőségek, menü, űrlap-végpont
 - `public/assets/` – képek, videók
+
+## Blog admin (/admin)
+
+A blog böngészőből kezelhető: **https://lukacsartur13.github.io/mindforge/admin/** (saját domainen: `https://www.mindforge.hu/admin/`).
+A [Sveltia CMS](https://sveltiacms.app) minden mentést commitként a `main` ágra ír, a GitHub Actions 1–2 perc alatt kiteszi az oldalra.
+
+**Első bejelentkezés:**
+1. Nyisd meg az `/admin/` oldalt → **Sign In Using Access Token**
+2. A megjelenő ablakban lévő linkre kattintva a GitHub előre kitöltve létrehoz egy tokent (a `mindforge` repóhoz, *Contents: Read and write* joggal). Lejárati időt érdemes 1 évre állítani.
+3. Másold be a tokent – a böngésző megjegyzi, legközelebb nem kell újra megadni.
+
+**Amit tud:** új bejegyzés, szerkesztés, törlés, borítókép feltöltése (automatikusan WebP-re tömörítve), SEO-cím és -leírás karakterszámlálóval, kategória (Mentális Pillérek), előnézet.
+A posztok Markdown fájlok a `src/content/blog/` mappában, a képeik a `src/content/blog/images/` alatt.
+Konfiguráció: `public/admin/config.yml`.
 
 ## Élesítés előtt
 

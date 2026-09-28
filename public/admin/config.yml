@@ -1,0 +1,129 @@
+# MINDFORGE blog admin (Sveltia CMS) – https://sveltiacms.app/en/docs
+# Bejelentkezés: "Sign In with Token" (GitHub personal access token).
+# Minden mentés egy commit a main ágra, amit a GitHub Actions 1–2 perc alatt kitesz az oldalra.
+
+backend:
+  name: github
+  repo: lukacsartur13/mindforge
+  branch: main
+  # Nincs OAuth-szerver, ezért csak tokenes bejelentkezés
+  auth_methods: [token]
+  commit_messages:
+    create: 'Blog: új bejegyzés – {{slug}}'
+    update: 'Blog: módosítás – {{slug}}'
+    delete: 'Blog: törlés – {{slug}}'
+    uploadMedia: 'Blog: kép feltöltése – {{path}}'
+    deleteMedia: 'Blog: kép törlése – {{path}}'
+
+# Saját domain bekötése után: https://www.mindforge.hu
+site_url: https://lukacsartur13.github.io/mindforge
+display_url: https://lukacsartur13.github.io/mindforge
+
+# Globális médiamappa (a blogképek bejegyzésenként külön, lásd lent)
+media_folder: /src/assets/img
+public_folder: /src/assets/img
+
+media_libraries:
+  default:
+    config:
+      max_file_size: 15000000
+      transformations:
+        raster_image:
+          format: webp
+          quality: 85
+          width: 2400
+          height: 2400
+
+# Ékezet nélküli, kötőjeles URL-ek: "Verseny előtti izgulás" -> verseny-elotti-izgulas
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: '-'
+
+collections:
+  - name: blog
+    label: Blog
+    label_singular: Bejegyzés
+    description: A mindforge.hu/blog bejegyzései. Mentés után 1–2 perc, mire megjelenik az oldalon.
+    folder: src/content/blog
+    extension: md
+    format: frontmatter
+    create: true
+    delete: true
+    slug: '{{title}}'
+    # A képek a bejegyzések mellé kerülnek (src/content/blog/images) – az oldal így optimalizálja őket
+    media_folder: images
+    public_folder: images
+    preview_path: 'blog/{{slug}}/'
+    summary: '{{title}}'
+    sortable_fields:
+      fields: [date, title]
+      default:
+        field: date
+        direction: descending
+    view_filters:
+      - label: Mentális Pillérek
+        field: category
+        pattern: mentalis-pillerek
+    fields:
+      - name: title
+        label: Cím
+        widget: string
+        hint: A bejegyzés oldalon megjelenő főcím (H1). Ebből készül az URL is.
+
+      - name: seoTitle
+        label: Google-cím (SEO)
+        widget: string
+        required: false
+        maxlength: 60
+        hint: 'Rövidebb cím a Google találati listához, max. 60 karakter, a fő kulcsszóval az elején. Ha üres, a fenti cím + „| MINDFORGE” lesz.'
+
+      - name: description
+        label: Rövid leírás (SEO)
+        widget: text
+        minlength: 70
+        maxlength: 160
+        hint: 120–155 karakter. Ez jelenik meg a Google-ben és megosztáskor a Facebookon.
+
+      - name: date
+        label: Megjelenés dátuma
+        widget: datetime
+        default: '{{now}}'
+
+      - name: updated
+        label: Utolsó érdemi frissítés
+        widget: datetime
+        required: false
+        hint: Csak akkor töltsd ki, ha a bejegyzés tartalmát lényegesen átírtad.
+
+      - name: cover
+        label: Borítókép
+        widget: image
+        hint: Fekvő vagy álló fotó egyaránt jó. Az oldal automatikusan több méretben és modern formátumban (AVIF/WebP) szolgálja ki.
+
+      - name: coverAlt
+        label: Borítókép leírása (alt szöveg)
+        widget: string
+        required: false
+        hint: 'Mi látható a képen? Pl. „Teniszező nő adogat a salakpályán”. Fontos a Google képkeresőhöz és a látássérült olvasóknak.'
+
+      - name: category
+        label: Kategória / sorozat
+        widget: select
+        required: false
+        options:
+          - label: Mentális Pillérek
+            value: mentalis-pillerek
+
+      - name: readingTime
+        label: Olvasási idő (perc)
+        widget: number
+        value_type: int
+        required: false
+        min: 1
+        hint: Hagyd üresen – a szöveg hosszából automatikusan számolódik.
+
+      - name: body
+        label: Szöveg
+        widget: markdown
+        hint: 'Alcímhez használd a „Heading 2/3” formátumot. Linkelj a Rólam oldalra vagy a konzultációhoz (/#kapcsolat), ha illik a témához.'

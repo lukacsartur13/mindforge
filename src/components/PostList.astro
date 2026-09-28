@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import Img from './Img.astro';
+import { readingMinutes } from '../content.config';
 
 interface Props {
   posts: CollectionEntry<'blog'>[];
@@ -11,7 +12,14 @@ interface Props {
 const { posts, heading, intro, active } = Astro.props;
 const fmt = new Intl.DateTimeFormat('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' });
 const excerpt = (html: string) =>
-  html.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 260) + '…';
+  html
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replace(/[#*_>\\]/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 260) + '…';
 ---
 <section class="blog">
   <nav aria-label="Blog kategóriák">
@@ -27,7 +35,7 @@ const excerpt = (html: string) =>
       <Img class="post-card__img" src={post.data.cover} alt={post.data.coverAlt} loading={i === 0 ? 'eager' : 'lazy'} sizes="(max-width: 900px) 100vw, 530px" widths={[480, 800, 1060]} />
       <div class="post-card__body">
         <p class="post-card__meta">
-          <time datetime={post.data.date.toISOString()}>{fmt.format(post.data.date)}</time> · {post.data.readingTime} perc olvasás
+          <time datetime={post.data.date.toISOString()}>{fmt.format(post.data.date)}</time> · {readingMinutes(post)} perc olvasás
         </p>
         <h2><a href={`/blog/${post.id}`}>{post.data.title}</a></h2>
         <p class="post-card__excerpt">{excerpt(post.body ?? '')}</p>
