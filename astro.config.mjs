@@ -10,8 +10,10 @@ const postDates = Object.fromEntries(
     .filter((f) => f.endsWith('.md'))
     .map((f) => {
       const src = fs.readFileSync(path.join('./src/content/blog', f), 'utf8');
-      const date = (src.match(/^updated:\s*(.+)$/m) || src.match(/^date:\s*(.+)$/m))?.[1];
-      return [`/blog/${f.replace(/\.md$/, '')}`, date && new Date(date).toISOString()];
+      // A CMS üres mezőt is írhat (updated: ''), ezért csak érvényes dátumot használunk
+      const field = (name) => src.match(new RegExp(`^${name}:\\s*['"]?([^'"\\n]*)['"]?\\s*$`, 'm'))?.[1];
+      const date = [field('updated'), field('date')].map((v) => v && new Date(v)).find((d) => d && !isNaN(d));
+      return [`/blog/${f.replace(/\.md$/, '')}`, date?.toISOString()];
     }),
 );
 

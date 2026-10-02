@@ -1,6 +1,6 @@
 # MINDFORGE blog admin (Sveltia CMS) – https://sveltiacms.app/en/docs
 # Bejelentkezés: "Sign In with Token" (GitHub personal access token).
-# Minden mentés egy commit a main ágra, amit a GitHub Actions 1–2 perc alatt kitesz az oldalra.
+# Minden mentés egy commit a main ágra, amit a Netlify 1–2 perc alatt kitesz az oldalra.
 
 backend:
   name: github
@@ -15,9 +15,12 @@ backend:
     uploadMedia: 'Blog: kép feltöltése – {{path}}'
     deleteMedia: 'Blog: kép törlése – {{path}}'
 
-# Saját domain bekötése után: https://www.mindforge.hu
-site_url: https://lukacsartur13.github.io/mindforge
-display_url: https://lukacsartur13.github.io/mindforge
+site_url: https://www.mindforge.hu
+display_url: https://www.mindforge.hu
+
+# Az üresen hagyott, nem kötelező mezők ne kerüljenek a fájlba (pl. updated: '')
+output:
+  omit_empty_optional_fields: true
 
 # Globális médiamappa (a blogképek bejegyzésenként külön, lásd lent)
 media_folder: /src/assets/img

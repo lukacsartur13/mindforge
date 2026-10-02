@@ -2,6 +2,9 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
+// A CMS az üresen hagyott mezőket '' vagy null értékkel mentheti
+const empty = (v: unknown) => (v === '' || v === null ? undefined : v);
+
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: ({ image }) => z.object({
@@ -11,12 +14,12 @@ const blog = defineCollection({
     /** Meta leírás (max. ~155 karakter) */
     description: z.string(),
     date: z.coerce.date(),
-    updated: z.coerce.date().optional(),
+    updated: z.preprocess(empty, z.coerce.date().optional()),
     cover: image(),
-    coverAlt: z.string().default(''),
+    coverAlt: z.preprocess(empty, z.string().default('')),
     /** Ha üres, a szöveg hosszából számolódik */
-    readingTime: z.number().optional(),
-    category: z.string().optional(),
+    readingTime: z.preprocess(empty, z.number().optional()),
+    category: z.preprocess(empty, z.string().optional()),
   }),
 });
 
