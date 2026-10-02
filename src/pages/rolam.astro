@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Img from '../components/Img.astro';
+import LazyVideo from '../components/LazyVideo.astro';
+import rolamPoster from '../assets/img/rolam-video-poster.jpg';
 import labda from '../assets/img/rolam-hero-labda.jpg';
 import edit from '../assets/img/seregely-edit.jpg';
 import rendelo from '../assets/img/rendelo.jpg';
@@ -69,9 +71,7 @@ const faqLd = {
 
   <!-- KI VAGYOK ÉN -->
   <section class="video-story" aria-labelledby="ki-vagyok">
-    <video autoplay muted loop playsinline preload="none" poster="/assets/img/rolam-video-poster.jpg" data-lazy-video aria-hidden="true">
-      <source data-src="/assets/video/rolam.mp4" type="video/mp4" />
-    </video>
+    <LazyVideo src="/assets/video/rolam.mp4" poster={rolamPoster} />
     <div class="video-story__inner reveal">
       <h2 id="ki-vagyok">Ki vagyok én?</h2>
       <p>Gyerekkorom óta a sport az életem része: tesi tagozatos általános iskolába jártam, táncoltam a Honvéd Táncegyüttesben, asztaliteniszeztem a Statisztikában, szertornáztam a középiskolai csapatban, 14 éves koromtól pedig motoroztam, és 19 évesen Magyarország első motorosrendőrnője lettem.</p>

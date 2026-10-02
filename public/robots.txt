@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://www.mindforge.hu/sitemap-index.xml
+Sitemap: https://www.mindforge.hu/sitemap.xml

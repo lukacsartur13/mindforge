@@ -24,7 +24,8 @@ export default defineConfig({
   site: 'https://www.mindforge.hu',
   base,
   trailingSlash: 'ignore',
-  build: { format: 'directory' },
+  // CSS a HTML-be ágyazva: nincs renderelést blokkoló kérés
+  build: { format: 'directory', inlineStylesheets: 'always' },
   integrations: [
     sitemap({
       filter: (page) => !/\/(impresszum|adatkezelesi-nyilatkozat)\/$/.test(page),

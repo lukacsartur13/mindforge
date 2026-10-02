@@ -1,0 +1,10 @@
+/* Helyben kiszolgált betűtípusok (gyorsabb, és nem küld adatot a Google-nek – GDPR).
+   Külön fájl: a BaseLayout az első kirajzolás után tölti be, így nem lassítja
+   az első megjelenést (font-display: swap miatt amúgy is a tartalék betű látszik először). */
+@import '@fontsource/playfair-display/400.css';
+@import '@fontsource/playfair-display/700.css';
+@import '@fontsource/cormorant-garamond/500.css';
+@import '@fontsource/cormorant-garamond/500-italic.css';
+@import '@fontsource/cormorant-garamond/600.css';
+@import '@fontsource/cormorant-garamond/700.css';
+@import '@fontsource/wix-madefor-text/400.css';

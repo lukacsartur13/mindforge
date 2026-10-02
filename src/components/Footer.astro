@@ -1,25 +1,18 @@
 ---
 import { NAV, SITE, stripBase } from '../config';
 import SocialIcons from './SocialIcons.astro';
+import LazyVideo from './LazyVideo.astro';
+import Img from './Img.astro';
+import poster from '../assets/img/footer-video-poster.jpg';
+import logo from '../assets/img/logo.png';
 const year = new Date().getFullYear();
 const path = stripBase(Astro.url.pathname).replace(/\/$/, '') || '/';
 ---
 <footer class="site-footer">
-  <video
-    class="site-footer__video"
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="none"
-    poster="/assets/img/footer-video-poster.jpg"
-    data-lazy-video
-  >
-    <source data-src="/assets/video/footer.mp4" type="video/mp4" />
-  </video>
+  <LazyVideo class="site-footer__video" src="/assets/video/footer.mp4" poster={poster} />
   <div class="site-footer__inner">
     <a href="/" class="site-footer__logo" aria-label="Mindforge – főoldal">
-      <img src="/assets/img/logo.png" alt="mindforge" width="700" height="210" loading="lazy" />
+      <Img src={logo} alt="MINDFORGE sport mentáltréning" sizes="(max-width: 900px) 200px, 270px" widths={[200, 270, 400, 540]} />
     </a>
 
     <address class="site-footer__contact">
@@ -32,7 +25,7 @@ const path = stripBase(Astro.url.pathname).replace(/\/$/, '') || '/';
     <div class="site-footer__links">
       <ul class="site-footer__nav">
         {NAV.map((item) => (
-          <li><a href={item.href} class:list={{ 'is-active': item.href === path }}>{item.label}</a></li>
+          <li><a href={item.href} class:list={{ 'is-active': item.href === path }}>{item.footerLabel}</a></li>
         ))}
       </ul>
       <ul class="site-footer__legal">
@@ -42,7 +35,7 @@ const path = stripBase(Astro.url.pathname).replace(/\/$/, '') || '/';
     </div>
 
     <div class="site-footer__bottom">
-      <SocialIcons class="site-footer__social" />
+      <SocialIcons class="site-footer__social" long />
       <p class="site-footer__copy">
         © {year} by MINDFORGE. Készítette és fenntartja:{" "}
         <a href="https://www.stratosweb.hu/" target="_blank" rel="noopener">STRATOS MEDIA AGENCY</a>

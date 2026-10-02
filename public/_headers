@@ -1,0 +1,6 @@
+# Netlify: a hash-elt nevű build fájlok soha nem változnak -> 1 év gyorsítótár
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/video/*
+  Cache-Control: public, max-age=2592000

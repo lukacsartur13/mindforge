@@ -15,12 +15,13 @@ export const SITE = {
 // vagy Web3Forms). Ha üres, az űrlap e-mail kliensben nyitja meg az üzenetet.
 export const FORM_ENDPOINT = '';
 
+// footerLabel: a láblécben eltérő linkszöveg, hogy ne ismétlődjenek a horgonyszövegek (SEO)
 export const NAV = [
-  { label: 'Főoldal', href: '/' },
-  { label: 'Rólam', href: '/rolam' },
-  { label: 'Sikersztorik', href: '/sikersztorik' },
-  { label: 'Kapcsolat', href: '/#kapcsolat' },
-  { label: 'Blog', href: '/blog' },
+  { label: 'Főoldal', footerLabel: 'Kezdőlap', href: '/' },
+  { label: 'Rólam', footerLabel: 'Seregély Editről', href: '/rolam' },
+  { label: 'Sikersztorik', footerLabel: 'Sikertörténetek', href: '/sikersztorik' },
+  { label: 'Kapcsolat', footerLabel: 'Kapcsolatfelvétel', href: '/#kapcsolat' },
+  { label: 'Blog', footerLabel: 'Mentáltréning blog', href: '/blog' },
 ];
 
 /**

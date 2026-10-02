@@ -375,6 +375,13 @@ p {
 .site-footer__nav a {
   text-decoration: none;
 }
+/* Legalább 24px magas érintési felület */
+.site-footer__legal a,
+.site-footer__nav a {
+  display: inline-block;
+  min-height: 24px;
+  line-height: 24px;
+}
 .site-footer__contact a:hover,
 .site-footer__legal a:hover,
 .site-footer__nav a:hover {
@@ -526,6 +533,13 @@ p {
 }
 .roles__cols p {
   max-width: 385px;
+}
+.roles__cols .roles__claim {
+  grid-column: 1 / -1;
+  max-width: none;
+  color: var(--white);
+  font-size: 18px;
+  font-style: italic;
 }
 
 /* Esetek – szórt képkártyák */

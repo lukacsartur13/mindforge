@@ -1,6 +1,8 @@
 ---
 import { NAV, SITE, stripBase } from '../config';
 import SocialIcons from './SocialIcons.astro';
+import Img from './Img.astro';
+import logo from '../assets/img/logo.png';
 
 interface Props {
   variant: 'overlay' | 'solid';
@@ -12,7 +14,7 @@ const isActive = (href: string) =>
 ---
 <header class:list={['site-header', `site-header--${variant}`]}>
   <a class="site-header__logo" href="/" aria-label="Mindforge – főoldal">
-    <img src="/assets/img/logo.png" alt="mindforge" width="700" height="210" />
+    <Img src={logo} alt="mindforge" loading="eager" sizes="(max-width: 900px) 150px, 198px" widths={[150, 198, 300, 400]} />
   </a>
   <button class="site-header__menu-btn" type="button" aria-expanded="false" aria-controls="site-menu">
     Menu

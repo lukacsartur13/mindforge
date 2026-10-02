@@ -71,6 +71,10 @@ for (const [from, to] of Object.entries(redirects)) {
   );
 }
 
+// Klasszikus, egyetlen /sitemap.xml (az @astrojs/sitemap index + sitemap-0 helyett)
+fs.renameSync(path.join(DIST, 'sitemap-0.xml'), path.join(DIST, 'sitemap.xml'));
+fs.rmSync(path.join(DIST, 'sitemap-index.xml'));
+
 if (process.env.CUSTOM_DOMAIN) fs.writeFileSync(path.join(DIST, 'CNAME'), process.env.CUSTOM_DOMAIN + '\n');
 // A Pages ne futtassa a Jekyllt (különben a _astro mappát kihagyná)
 fs.writeFileSync(path.join(DIST, '.nojekyll'), '');

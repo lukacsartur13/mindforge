@@ -1,0 +1,20 @@
+---
+// Háttérvideó: a poszter és a videó is csak akkor töltődik, ha a nézet közelébe ér
+// (main.ts), így nem versenyez a hero képpel és a betűtípusokkal.
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  src: string;
+  poster: ImageMetadata;
+  class?: string;
+}
+
+const { src, poster, class: className } = Astro.props;
+const p = await getImage({ src: poster, width: Math.min(960, poster.width), format: 'webp', quality: 60 });
+---
+<video class={className} autoplay muted loop playsinline preload="none" data-poster={p.src} data-lazy-video aria-hidden="true">
+  <source data-src={src} type="video/mp4" />
+  <!-- Hang nélküli, díszítő videó: nincs feliratozandó beszéd -->
+  <track kind="captions" src="/assets/video/nincs-beszed.vtt" srclang="hu" label="Magyar" />
+</video>

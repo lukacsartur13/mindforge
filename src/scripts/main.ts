@@ -44,7 +44,7 @@ if (overlayHeader && lightSections.length) {
     },
     { passive: true },
   );
-  update();
+  requestAnimationFrame(update);
 }
 
 // ---------- Diavetítés ----------
@@ -90,6 +90,7 @@ if ('IntersectionObserver' in window) {
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const videos = document.querySelectorAll<HTMLVideoElement>('video[data-lazy-video]');
 const loadVideo = (v: HTMLVideoElement) => {
+  if (v.dataset.poster) v.poster = v.dataset.poster;
   v.querySelectorAll<HTMLSourceElement>('source[data-src]').forEach((s) => {
     s.src = s.dataset.src!;
     s.removeAttribute('data-src');

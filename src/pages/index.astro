@@ -2,6 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Img from '../components/Img.astro';
+import LazyVideo from '../components/LazyVideo.astro';
+import poster1 from '../assets/img/video-1-poster.jpg';
+import poster2 from '../assets/img/video-2-poster.jpg';
 import hero from '../assets/img/hero-tennis.jpg';
 import imgNemSportolo from '../assets/img/eset-nem-sportolo.jpg';
 import imgSportszulo from '../assets/img/eset-sportszulo.jpg';
@@ -32,7 +35,7 @@ const slides = [
       'Túl nagy benned a versenydrukk és szeretnéd megtanulni, hogyan kezeld',
       'Kézzel fogható módszerekre vágysz, hogyan hozd ki magadból a legtöbbet',
     ],
-    button: { label: 'Bemutatkozás', href: '/rolam' },
+    button: { label: 'Ismerj meg jobban', href: '/rolam' },
   },
   {
     id: 'dia-sportszulo',
@@ -45,7 +48,7 @@ const slides = [
       'Hogyan kommunikálj az edzőkkel és tanárokkal?',
       'Időnként szükséged lehet arra, hogy kibeszéld magadból a benned felgyülemlett problémákat. Ha elfáradsz, jól jön valaki, aki megérti, miről beszélsz!',
     ],
-    button: { label: 'Sikersztorik', href: '/sikersztorik' },
+    button: { label: 'Olvasd el a sikertörténeteket', href: '/sikersztorik' },
   },
   {
     id: 'dia-edzo',
@@ -58,7 +61,7 @@ const slides = [
       'Ha támogatni szeretnéd őt abban, hogy mentálisan megerősödjön és erről nyíltan tudsz vele beszélni, az a TI kapcsolatotokra is jó hatással lesz és nagyban növeli majd az eredményességeteket is.',
       'Az a tapasztalatom, hogy sokkal jobb eredményeket érnek el azok a sportolók, ahol az edző kifejezi a mentális fejlesztés fontosságát és támogatja is azt. Itt egy team részese leszek, de a főszerep a Tiéd marad!',
     ],
-    button: { label: 'Blog', href: '/blog' },
+    button: { label: 'Tovább a blogra', href: '/blog' },
   },
 ];
 
@@ -77,10 +80,10 @@ const cases = [
 >
   <!-- HERO -->
   <section class="hero">
-    <Img class="hero__bg" src={hero} alt="Teniszező nő adogat a salakpályán, felülnézetből" loading="eager" fetchpriority="high" widths={[640, 960, 1280, 1920]} />
+    <Img class="hero__bg" src={hero} alt="Teniszező nő adogat a salakpályán, felülnézetből" loading="eager" fetchpriority="high" widths={[480, 750, 1080, 1440, 1920]} />
     <div class="hero__content">
       <h1>
-        <span class="hero__eyebrow">Sport mentáltréner – Seregély Edit</span>
+        <span class="hero__eyebrow">Sport mentáltréner – Seregély Edit</span>{' '}
         Ahol a gondolkodásból teljesítmény születik
       </h1>
       <p class="hero__lead">Emeld új szintre teljesítményed az életben és sportban egyaránt a segítségemmel!</p>
@@ -96,12 +99,8 @@ const cases = [
         <a class="btn btn--white" href="/rolam">Bemutatkozás</a>
       </div>
       <div class="power__videos reveal">
-        <video autoplay muted loop playsinline preload="none" poster="/assets/img/video-1-poster.jpg" data-lazy-video aria-hidden="true">
-          <source data-src="/assets/video/mentalis-ero-1.mp4" type="video/mp4" />
-        </video>
-        <video autoplay muted loop playsinline preload="none" poster="/assets/img/video-2-poster.jpg" data-lazy-video aria-hidden="true">
-          <source data-src="/assets/video/mentalis-ero-2.mp4" type="video/mp4" />
-        </video>
+        <LazyVideo src="/assets/video/mentalis-ero-1.mp4" poster={poster1} />
+        <LazyVideo src="/assets/video/mentalis-ero-2.mp4" poster={poster2} />
       </div>
       <div class="power__about">
         <h3>Ki vagyok én?</h3>
@@ -120,6 +119,7 @@ const cases = [
       <div class="roles__cols reveal">
         <p>A Sport mentáltréner segíti a sportolókat a mentális felkészülésben, a teljesítményük javításában és a versenyképességük növelésében. A sportoló fizikai felkészültségén túl a teljesítménye szempontjából fontos tényező a mentális edzettsége.</p>
         <p>A coach a coaching folyamatban kérdésekkel segít megtalálni azokat a válaszokat, amik a TE legjobb válaszaid és amelyekkel a megoldáshoz vezető utat megtalálod. A coaching nem tanácsadás, hanem inkább egy támogató és ösztönző kapcsolat, mely segít Neked önálló döntéseket hozni és előre lépni a kívánt irányba.</p>
+        <p class="roles__claim">Seregély Editként sport mentáltréner és coach is vagyok, így a két módszert ötvözve kísérlek el oda, ahol a gondolkodásból teljesítmény születik.</p>
       </div>
     </section>
   </div>
@@ -133,12 +133,12 @@ const cases = [
     {cases.map((c) =>
       c.slide !== undefined ? (
         <a class={`case case--${c.n} reveal`} href="#esetek-reszletesen" data-slide={c.slide}>
-          <Img src={c.img} alt={c.alt} sizes="(max-width: 900px) 45vw, 250px" widths={[300, 500, 700]} />
+          <Img src={c.img} alt={c.alt} sizes="(max-width: 900px) 45vw, 250px" widths={[300, 400, 500, 700]} />
           <p class="case__title">{c.title}</p>
         </a>
       ) : (
         <div class={`case case--${c.n} reveal`}>
-          <Img src={c.img} alt={c.alt} sizes="(max-width: 900px) 45vw, 250px" widths={[300, 500, 700]} />
+          <Img src={c.img} alt={c.alt} sizes="(max-width: 900px) 45vw, 250px" widths={[300, 400, 500, 700]} />
           <p class="case__title">{c.title}</p>
         </div>
       ),

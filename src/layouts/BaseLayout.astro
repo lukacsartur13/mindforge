@@ -1,12 +1,5 @@
 ---
-// Helyben kiszolgált betűtípusok (gyorsabb, és nem küld adatot a Google-nek – GDPR)
-import '@fontsource/playfair-display/400.css';
-import '@fontsource/playfair-display/700.css';
-import '@fontsource/cormorant-garamond/500.css';
-import '@fontsource/cormorant-garamond/500-italic.css';
-import '@fontsource/cormorant-garamond/600.css';
-import '@fontsource/cormorant-garamond/700.css';
-import '@fontsource/wix-madefor-text/400.css';
+import fontsUrl from '../styles/fonts.css?url';
 import '../styles/global.css';
 import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
@@ -160,7 +153,8 @@ const extraLd = [breadcrumbLd, ...(Array.isArray(jsonLd) ? jsonLd : jsonLd ? [js
     <meta name="theme-color" content="#000000" />
     <meta name="format-detection" content="telephone=no" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap.xml" />
     <link rel="alternate" type="application/rss+xml" title="MINDFORGE blog" href="/rss.xml" />
 
     <meta property="og:site_name" content="MINDFORGE" />
@@ -181,6 +175,19 @@ const extraLd = [breadcrumbLd, ...(Array.isArray(jsonLd) ? jsonLd : jsonLd ? [js
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
     <slot name="head" />
+
+    <!-- Betűtípusok az első kirajzolás után (lásd styles/fonts.css) -->
+    <script is:inline define:vars={{ fontsUrl }}>
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => {
+          const l = document.createElement('link');
+          l.rel = 'stylesheet';
+          l.href = fontsUrl;
+          document.head.append(l);
+        }),
+      );
+    </script>
+    <noscript><link rel="stylesheet" href={fontsUrl} /></noscript>
 
     <script type="application/ld+json" set:html={JSON.stringify(siteLd)} />
     {extraLd.map((ld) => <script type="application/ld+json" set:html={JSON.stringify(ld)} />)}
